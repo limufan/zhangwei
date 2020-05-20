@@ -1,0 +1,15 @@
+.ywpui_badge {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+.ywpui_badge_success{
+    background-color: #14cc95;
+    color: #fff;
+}
+
+.ywpui_badge_warning{
+    background-color: #FF8746;
+    color: #fff;
+}

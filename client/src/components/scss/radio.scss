@@ -1,0 +1,13 @@
+.form-radio {
+    display: inline-block;
+    line-height: $form-input-line-height;
+}
+.form-radio-label{
+    margin-left: $form-check-inline-margin-x;
+}
+.form-radio-group{
+    display: inline-block;
+}
+.form-radio-group .form-radio{
+    margin-right: 1rem;
+}

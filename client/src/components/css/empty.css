@@ -1,0 +1,12 @@
+.ywpui_empty{
+    margin: 20px auto;
+    width: 151px;
+    text-align: center;
+}
+
+.ywpui_empty i{
+    display: block;
+    height: 118px;
+    width: 151px;
+    background: url(../img/empty.png) no-repeat;
+}

@@ -1,0 +1,7 @@
+.ywpui_progress_success .progress-bar{
+    background-color: #14cc95;
+}
+
+.ywpui_progress_danger .progress-bar{
+    background-color: #f36f5d;
+}

@@ -1,0 +1,37 @@
+.ywpui_tab {
+    width: 100%;
+    background: #fff;
+    border-bottom: solid 1px #ccc;
+}
+.ywpui_tab_pane {
+    margin-right: 10px;
+    height: 40px;
+    background: #EEF1F9;
+    text-align: center;
+    font-size: 14px;
+    line-height: 40px;
+}
+.ywpui_tab_pane a {
+    color: #999999;
+    display: block;
+    text-decoration: none;
+    background-image: none;
+}
+.ywpui_tab_pane.current a:hover {
+    color: #fff;
+}
+.ywpui_tab_pane.current a{
+    color: #fff;
+}
+
+.ywpui_tab_pane.current{
+    background-color: #15cc96;
+}
+
+.ywpui_tab_content {
+    padding: 20px 0;
+    background: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}

@@ -1,0 +1,23 @@
+.ywpui_witch{
+    display: inline-block;
+    border:1px solid #ccc;
+    cursor: pointer;
+}
+.ywpui_witch span{
+    display:inline-block;
+    padding:1px 7px;
+}
+.ywpui_witch.off span:first-child{
+    color:#14cc95;
+}
+.ywpui_witch.off span:last-child{
+    background: #999;
+    color:#fff;
+}
+.ywpui_witch.on span:first-child{
+    background:#14cc95;
+    color:#fff;
+}
+.ywpui_witch.on span:last-child{
+    color:#14cc95;
+}

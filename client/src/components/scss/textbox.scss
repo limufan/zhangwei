@@ -1,0 +1,21 @@
+.form-textbox {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+    padding: 0 10px;
+    position: relative;
+    line-height: $form-input-line-height;
+}
+
+.form-textbox.error{
+    border: 1px solid #f36f5d;
+}
+.form-textbox.focused{
+    border: 1px solid #15cc96;
+}
+
+.form-textbox.disabled{
+    background-color: #ddd;
+    cursor: not-allowed!important;
+}

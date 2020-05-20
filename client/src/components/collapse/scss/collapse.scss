@@ -1,0 +1,13 @@
+@import "../../scss/variables.scss";
+
+.ywpui_collapse{
+    
+}
+.ywpui_collapse_panel{
+    border: solid 1px $gray-300;
+}
+.ywpui_collapse_panel_title{
+    background-color: $ywpui-light;
+    padding: 15px 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,23 @@
+@import "../../scss/variables.scss";
+
+.ywpui_tree{
+
+}
+
+.ywpui_tree_node{
+    line-height: normal;
+}
+
+
+.ywpui_tree_node_content{
+    padding: 10px 0;
+    cursor: pointer;
+}
+.ywpui_tree_node_content:hover,
+.ywpui_tree_node.selected>.ywpui_tree_node_content{
+    background-color: $ywpui-light;
+}
+
+.ywpui_tree_node .ywpui_tree_node_children{
+    padding: 0 0 0 20px;
+}

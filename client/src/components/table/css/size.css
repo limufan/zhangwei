@@ -1,0 +1,14 @@
+
+.ywpui_table__.ywpui_table_small{
+    font-size: 12px;
+}
+.ywpui_table_small .ywpui_table_header_cell, .ywpui_table_small .ywpui_table_cell{
+    padding: 2px 5px;
+    height: 30px;
+}
+
+
+.ywpui_table_large .ywpui_table_header_cell, .ywpui_table_large .ywpui_table_cell{
+    padding: 5px 10px;
+    height: 50px;
+}

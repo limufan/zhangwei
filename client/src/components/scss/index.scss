@@ -1,0 +1,23 @@
+@import "./bootstrap/bootstrap.scss";
+@import "./variables.scss";
+@import "./form.scss";
+@import "./textbox.scss";
+@import "./checkbox.scss";
+@import "./radio.scss";
+@import "./autoComplete.scss";
+@import "./datepicker.scss";
+@import "./select.scss";
+@import "./textarea.scss";
+@import "./searchTextbox.scss";
+
+
+.nowrap{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.ellipsis{
+    overflow: hidden;
+    text-overflow:ellipsis;
+}

@@ -1,0 +1,61 @@
+.form-select{
+    display: inline-block;
+    width: 100%;
+    border: solid 1px #ccc;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    height: $form-input-line-height;
+    line-height: $form-input-line-height;
+}
+.form-select:hover{
+    color: #333;
+}
+.form-select:focus{
+    border-color: #15cc96;
+}
+.form-select.error{
+    border-color: #f36f5d;
+}
+
+.form-select.disabled{
+    background-color: #ddd;
+    cursor: not-allowed!important;
+}
+.form-select-option-group{
+    padding: 10px 0;
+    max-height: 170px;
+    min-height: 40px;
+    overflow: auto;
+}
+
+.form-select-option{
+    display: block;
+    width: 100%;
+    clear: both;
+    line-height: $form-input-line-height;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.form-select-option.hover, .form-select-option:hover{
+    background: #ebf0f6;
+    color: black;
+}
+
+.form-select-option .selected{
+    color: #14CC95;
+}
+
+.form-select-item{
+    max-height: 150px;
+    overflow-y: auto;
+    outline: none;
+    margin: 0;
+    text-align: left;
+    overflow-x: hidden;
+}

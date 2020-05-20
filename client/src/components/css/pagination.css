@@ -1,0 +1,172 @@
+
+/*lihl 2018-1-5 end*/
+/* page css start */
+.ywpui_pager{
+    padding-left: 0;
+    padding: 10px 0 0 0;
+    text-align: center;
+    list-style: none;
+}
+.ywpui_pager li{
+    display: inline-block;
+}
+.ywpui_total{
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    font-size: 14px;
+}
+.ywpui_total_count{
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    margin-right: 20px;
+    color: #999;
+}
+.ywpui_display{
+    width: 86px;
+    line-height: 28px;
+    background: #fff;
+    float: left;
+    position: relative;
+    cursor: pointer;
+}
+.ywpui_display_num{
+    width: 100%;
+    height: 28px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.ywpui_display_num_list{
+    width: 100%;
+    position: absolute;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 14px;
+    top: -77px;
+    border-bottom:none;
+}
+.ywpui_display_num_list li{
+    width: 100%;
+    line-height: 26px;
+    display: block;
+    text-align: center;
+}
+.ywpui_pagination{
+    display: inline-block;
+    padding-left: 0;
+    margin: 0px 10px 0px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.ywpui_pagination a{
+    color: #333;
+    text-decoration: none;
+}
+
+.ywpui_pagination_item{
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+    height:28px;
+    line-height:28px;
+    text-align:center;
+    padding: 0 10px;
+    border-radius:unset;
+    cursor: pointer;
+}
+.ywpui_pagination_item.active{
+    color: #15cc96;
+    border-color: #15cc96;
+    background-color: #fff;
+    outline: none;
+    box-shadow: none;
+}
+
+.ywpui_pagination_item:hover {
+    color: #15cc96;
+    background-color: #fff;
+    border-color: #15cc96;
+    outline: none;
+}
+
+.ywpui_pagination_item.disabled{
+    background-color: #fff ;
+    border: 1px solid #ddd ;
+    outline: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+.ywpui_pagination_item.disabled a{
+    cursor: not-allowed;
+}
+.ywpui_pagination_item.disabled a:hover{
+    color:#333;
+}
+
+.ywpui_pageJump{
+    display: inline-block;
+    padding-left: 0;
+    margin: 0 10px 0px 0;
+    border-radius: 4px;
+    vertical-align: top;
+    font-size: 14px;
+}
+.ywpui_pageJump input{
+    width:60px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 3px 10px;
+    line-height: 1.42857143;
+    color: #999;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    outline: none;
+}
+.ywpui_pageJump button{
+    margin-left: 10px;
+    display: inline-block;
+    font-size: 14px;
+    padding: 4px 10px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    background-color: #14cc95;
+    border: none;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+.ywpui_display_num i{
+    width: 8px;
+    height: 8px;
+    margin: 9px 0;
+    background: url(../img/select_ico.png) no-repeat center;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+}
+.ywpui_side_left_warp .container_warp>ul>li .threelevel{
+	overflow: hidden;
+	width: 480px;
+	padding: 0;
+}
+.ywpui_threelevel ul{
+	float: left;
+	width: 160px;
+	border-left:1px solid #323d52;
+	padding: 15px 20px;
+}
+.ywpui_threelevel ul li:first-child a{
+	font-size: 16px;
+}
+.ywpui_threelevel ul li:first-child a:hover{
+	color: #8691af;
+	cursor: default;
+}
+.ywpui_threelevel ul:first-child{
+	border: none;
+}
+
+/* page css end */

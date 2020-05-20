@@ -1,0 +1,68 @@
+.form-datepicker{
+    display: inline-block;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: url(../img/date_ico.jpg) no-repeat;
+    background-position: 10px 50%;    
+    padding: 0 10px 0 30px;
+}
+.form-datepicker:focus{
+    border-color: #15cc96;
+}
+.form-datepicker.error{
+    border-color: #f36f5d;
+}
+
+.form-datepicker.disabled, .form-datepicker.disabled input{
+    background-color: #ddd;
+    cursor: not-allowed!important;
+}
+
+.form-datepicker .rc-calendar-today .rc-calendar-date{
+    border: 1px solid #e5f7f5;
+}
+
+.form-datepicker .rc-calendar-selected-date .rc-calendar-date{
+    background: #14cc95;
+    color: #fff;
+}
+.form-datepicker .rc-calendar-selected-day .rc-calendar-date{
+    background: #e5f7f5;
+}
+
+.form-datepicker-calendar{
+    display: inline-block;
+    outline: none;
+}
+.form-datepicker-calendar:hover{
+    color: #333;
+}
+
+.form-datepicker input{
+    width: 100%;
+    line-height: $form-input-line-height;
+    background-color: #fff;
+    outline: 0;
+    border: 0px;
+    color: #333;
+}
+
+.form-datepicker-range-calendar{
+    text-align: left;
+    overflow: visible;
+    background: #fff;
+    border: solid 1px #ddd;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    width: 610px;
+}
+.form-datepicker-range-calendar .rc-calendar{
+    box-shadow: none;
+}
+.form-datepicker-range-calendar_menu a{
+    display: block;
+    padding: 5px 10px;
+}

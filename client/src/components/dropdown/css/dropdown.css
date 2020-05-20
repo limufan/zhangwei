@@ -1,0 +1,10 @@
+.ywpui_dropdown{
+    text-align: left;
+    overflow: visible;
+    width: 100%;
+    background: #fff;
+    border: solid 1px #ddd;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    font-size: 14px;
+}

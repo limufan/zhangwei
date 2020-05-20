@@ -1,0 +1,105 @@
+.ywpui_table__{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    position: relative;
+}
+.ywpui_table__.error{
+    border: 1px solid #f36f5d;
+}
+.ywpui_table__ table{
+    width: 100%;
+    border-collapse: collapse;
+    empty-cells: show;
+    table-layout: fixed;
+}
+.ywpui_table_nowrap .ywpui_table_header_cell, .ywpui_table_nowrap .ywpui_table_cell{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.ywpui_table_fixed{
+    
+}
+.ywpui_table_fixed table{
+    width: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.ywpui_table_header{
+    
+}
+.ywpui_table_body{
+    
+}
+.ywpui_table_fix_right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+.ywpui_table__.srcoll-y .ywpui_table_header{
+    overflow-y: scroll;
+}
+.ywpui_table__.srcoll-y .ywpui_table_fix_right_scroll{
+    overflow-y: scroll;
+}
+.ywpui_table__.srcoll-x .ywpui_table_fix_right_scroll{
+    overflow-x: scroll;
+}
+.ywpui_table_header_cell {    
+    padding: 5px 10px;
+    background: #ebf0f6;
+    height: 40px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    box-sizing: border-box;
+    border-bottom: solid 1px #ccc;
+}
+.ywpui_table_header_cell.canSort{
+    cursor: pointer;
+}
+.ywpui_table_cell {
+    padding: 5px 10px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 40px;
+    border-bottom: solid 1px #ccc;
+}
+
+.ywpui_table__.ywpui_table_border  .ywpui_table_cell,
+.ywpui_table__.ywpui_table_border .ywpui_table_header_cell{
+    border: solid 1px #ccc;
+}
+.ywpui_table__.ywpui_table_border .ywpui_table_body tr:first-child .ywpui_table_cell{
+    border-top: none;
+}
+
+.ywpui_table__.ywpui_table_border_top .ywpui_table_cell,
+.ywpui_table__.ywpui_table_border_top .ywpui_table_header_cell{
+    border-top: solid 1px #ccc;
+}
+
+.ywpui_table__.ywpui_table_border_bottom .ywpui_table_cell,
+.ywpui_table__.ywpui_table_border_bottom .ywpui_table_header_cell{
+    border-bottom: solid 1px #ccc;
+}
+
+.ywpui_table__.ywpui_table_border_left_top_right .ywpui_table_cell,
+.ywpui_table__.ywpui_table_border_left_top_right .ywpui_table_header_cell{
+    border-left: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+}
+
+.ywpui_table__.ywpui_table_vertical_top .ywpui_table_cell,
+.ywpui_table__.ywpui_table_vertical_top .ywpui_table_header_cell{
+    vertical-align: top
+}
+
+@import "./row.css";
+@import "./column.css";
+@import "./size.css";

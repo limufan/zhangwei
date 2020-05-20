@@ -1,0 +1,7 @@
+.ywpui_table_row.disabled{
+    color: #999
+}
+.ywpui_table_row.hover{
+    background: #ebf0f6;
+    color: black;
+}

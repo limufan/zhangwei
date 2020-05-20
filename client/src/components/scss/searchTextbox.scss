@@ -1,0 +1,26 @@
+.form-search-textbox{
+    display: inline-block;
+    width: 277px;
+    height: 36px;
+}
+
+.form-search-textbox-input {
+    width: 240px;
+    height: 36px;
+    border: solid 1px #ccc;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgb(204, 204, 204);
+    border-right: none;
+    padding: 0 8px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.form-search-textbox-button {
+    width: 36px;
+    height: 36px;
+    background: #14cc95;
+    cursor: pointer;
+}

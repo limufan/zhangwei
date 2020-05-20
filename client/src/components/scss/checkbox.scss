@@ -1,0 +1,14 @@
+.form-checkbox {
+    display: inline-block;
+    line-height: $form-input-line-height;
+}
+.form-checkbox-label{
+    margin-left: $form-check-inline-margin-x;
+}
+
+.form-checkbox-group{
+    display: inline-block;
+}
+.form-checkbox-group .form-checkbox{
+    margin-right: 1rem;
+}
