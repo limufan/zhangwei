@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import {Table, Toolbar, Form, Row, Col, SerachTextBox, Button, FixedBottom} from "../../components";
 import DetailsForm from "./DetailsForm"
+import request from "superagent"
 
 export default class Add extends Component {
     constructor(props){
@@ -15,7 +16,7 @@ export default class Add extends Component {
         const value = this.state.value;
         return(
             <div>
-                <DetailsForm />
+                <DetailsForm ref={f => this._form = f}/>
                 <Row >
                     <Col offset={1} auto={true}>
                         <Button type="primary" onClick={this.handleSubmit}>保存</Button>
@@ -29,10 +30,31 @@ export default class Add extends Component {
     }
 
     handleSubmit = () => {
-        this.props.history.push("/");
+        if(this._form.validate()){
+            let value = this._form.getValue();
+            this.create(value, result => {
+                if(result.success){
+                    this.props.history.push("/");
+                }
+            });
+        }
     }
 
     handleCancel = () => {
         this.props.history.push("/");
+    }
+
+    create = (value, callback) =>{
+        request.post('api/weixiu/create')
+            .send(value)
+            .then(response =>{
+                var result = response.body;
+                if(callback){
+                    callback(result);
+                }
+            })
+            .catch(result =>{
+                alert(result.message);
+            })
     }
 }

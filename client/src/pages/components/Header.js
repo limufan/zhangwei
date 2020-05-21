@@ -44,14 +44,10 @@ export default class Mingxi extends Component {
                             <li className="nav-item active">
                                 <a className="nav-link" href="#/kucun">库存管理</a>
                             </li>
-                            {/* <li className="nav-item active">
+                            <li className="nav-item active">
                                 <a className="nav-link" href="#/peijian">配件管理</a>
-                            </li> */}
+                            </li>
                         </ul>
-                        <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
                     </div>
                 </Header>
         )

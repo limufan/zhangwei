@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import {Form, Row, Col, FormLabel, FormTitle, FormControl} from "../../components";
+import request from "superagent"
 const {NumberTextBox, DatePicker, AutoComplete, DateRange, CheckBox, CheckBoxGroup, Select, Textarea, RadioGroup, AutoCompleteSelect} = Form;
 
 export default class DetailsForm extends Component {
@@ -14,20 +15,20 @@ export default class DetailsForm extends Component {
     render(){
         const value = this.state.value;
         return(
-            <Form ref={el => this._form = el} value={value} onChange={this.handleFormChange}>
+            <Form ref={el => this._form = el} onChange={this.handleFormChange}>
                 <FormTitle title="基础信息"/>
                 <Row noGutters={true}>
                     <Col auto={true}><FormLabel title="日期" required={true} /></Col>
                     <Col span={3}>
                         <FormControl>
-                            <DatePicker name="date" value={value.date} rules={{required: true, message: "请选择日期"}}/>
+                            <DatePicker name="createdTime" rules={{required: true, message: "请选择日期"}}/>
                         </FormControl>
                     </Col>
-                    <Col auto={true} offset={1}><FormLabel title="维修类型" required={true} /></Col>
+                    <Col auto={true} offset={1}><FormLabel title="配件" required={true} /></Col>
                     <Col span={3}>
                         <FormControl>
-                             <AutoCompleteSelect name="autoComplete" value={value.autoComplete} rules={{required: true, message: "必选项"}}
-                                getItems={(keyword, callback) => callback([{text: "师德师风", value: 1}]) }/>
+                             <AutoCompleteSelect name="peijianId" rules={{required: true, message: "必选项"}}
+                                getItems={(keyword, callback) => this.getPeijianItems(keyword, callback) }/>
                         </FormControl>
                     </Col>
                 </Row>
@@ -35,39 +36,7 @@ export default class DetailsForm extends Component {
                     <Col auto={true}><FormLabel title="数量：" required={true} /></Col>
                     <Col span={3}>
                         <FormControl>
-                            <NumberTextBox name="area" value={value.area} type="float" rules={{required: true, message: "请输入面积"}}>
-                                <font class="from_item_input_span">
-                                    m<sup>2</sup>
-                                </font>
-                            </NumberTextBox>
-                        </FormControl>
-                    </Col>
-                    <Col auto={true} offset={1}><FormLabel title="车辆：" required={true} /></Col>
-                    <Col span={3}>
-                        <FormControl>
-                            <AutoComplete name="autoComplete" value={value.autoComplete} rules={{required: true, message: "必选项"}}
-                                    getItems={(keyword, callback) => callback(["102", "103"]) }/>
-                        </FormControl>
-                    </Col>
-                </Row>
-                <Row noGutters={true}>
-                    <Col auto={true}><FormLabel title="金额：" required={true} /></Col>
-                    <Col span={3}>
-                        <FormControl>
-                            <NumberTextBox name="area" value={value.area} type="float" rules={{required: true, message: "请输入面积"}}>
-                                <font class="from_item_input_span">
-                                    m<sup>2</sup>
-                                </font>
-                            </NumberTextBox>
-                        </FormControl>
-                    </Col>
-                    <Col auto={true} offset={1}><FormLabel title="单价：" required={true} /></Col>
-                    <Col span={3}>
-                        <FormControl>
-                            <NumberTextBox name="area" value={value.area} type="float" rules={{required: true, message: "请输入面积"}}>
-                                <font class="from_item_input_span">
-                                    m<sup>2</sup>
-                                </font>
+                            <NumberTextBox name="shuliang" type="int" digits={0} rules={{required: true, message: "请输入数量"}}>
                             </NumberTextBox>
                         </FormControl>
                     </Col>
@@ -82,5 +51,26 @@ export default class DetailsForm extends Component {
                 </Row>
             </Form>
         )
+    }
+
+    getValue(){
+        return this._form.getValue();
+    }
+
+    validate(){
+        return this._form.validate();
+    }
+
+    getPeijianItems = (keyword, callback) =>{
+        request.post('api/peijian/getList')
+            .send({keyword: keyword})
+            .then(response =>{
+                var result = response.body;
+                var peijianItems = result.peijianList.map(p => {return { value: p.id, text: p.name}} );
+                callback(peijianItems);
+            })
+            .catch(result =>{
+                alert(result.message);
+            })
     }
 }
