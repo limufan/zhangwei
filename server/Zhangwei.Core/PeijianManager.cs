@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Zhangwei.Data;
+using Zhangwei.Pinyin;
 
 namespace Zhangwei.Core
 {
@@ -37,6 +39,25 @@ namespace Zhangwei.Core
                     context.SaveChanges();
                 }
             }
+        }
+
+        public void UpdateTag()
+        {
+            using (var context = ZhangweiContextFactory.Create())
+            {
+                var peijianList = context.Peijian.ToList();
+                foreach(var model in peijianList)
+                {
+                    model.Tag = this.GetTag(model);
+                    context.Peijian.Update(model);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public string GetTag(PeijianDataModel model)
+        {
+            return PinyinProvider.Instance.GetJianma(model.Name) + model.Tuhao + PinyinProvider.Instance.GetQuanpin(model.Name) + model.Tuhao;
         }
     }
 }

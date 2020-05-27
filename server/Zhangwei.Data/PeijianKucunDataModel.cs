@@ -22,9 +22,13 @@ namespace Zhangwei.Data
 
         public float Danjia { set; get; }
 
+        public DateTime RukuTime { set; get; }
+
         public DateTime CreatedTime { set; get; }
 
         public int Shuliang { set; get; }
+
+        public string Gongyingshang { set; get; }
 
         public int Kucun { set; get; }
 

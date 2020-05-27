@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import {Form, Row, Col, FormLabel, FormTitle, FormControl} from "../../components";
 import request from "superagent"
-const {NumberTextBox, DatePicker, AutoComplete, DateRange, CheckBox, CheckBoxGroup, Select, Textarea, RadioGroup, AutoCompleteSelect} = Form;
+import peiApi from "../peijian/Api"
+import gongyingshangApi from "../gongyingshang/Api"
+const {NumberTextBox, DatePicker, AutoComplete, DateRange, CheckBox, TextBox, Select, Textarea, RadioGroup, AutoCompleteSelect} = Form;
 
 export default class DetailsForm extends Component {
     constructor(props){
@@ -13,7 +15,6 @@ export default class DetailsForm extends Component {
     }
 
     render(){
-        const value = this.state.value;
         return(
             <Form ref={el => this._form = el} onChange={this.handleFormChange}>
                 <FormTitle title="基础信息"/>
@@ -21,14 +22,14 @@ export default class DetailsForm extends Component {
                     <Col auto={true}><FormLabel title="日期" required={true} /></Col>
                     <Col span={3}>
                         <FormControl>
-                            <DatePicker name="createdTime" rules={{required: true, message: "请选择日期"}}/>
+                            <DatePicker name="rukuTime" rules={{required: true, message: "请选择日期"}}/>
                         </FormControl>
                     </Col>
                     <Col auto={true} offset={1}><FormLabel title="配件" required={true} /></Col>
                     <Col span={3}>
                         <FormControl>
                              <AutoCompleteSelect name="peijianId" rules={{required: true, message: "必选项"}}
-                                getItems={(keyword, callback) => this.getPeijianItems(keyword, callback) }/>
+                                getItems={(keyword, callback) => peiApi.getPeijianItems(keyword, callback) }/>
                         </FormControl>
                     </Col>
                 </Row>
@@ -40,12 +41,28 @@ export default class DetailsForm extends Component {
                             </NumberTextBox>
                         </FormControl>
                     </Col>
-                </Row>
-                <Row noGutters={true}>
-                    <Col auto={true}><FormLabel title="备注" required={true} /></Col>
+                    <Col auto={true} offset={1}><FormLabel title="供应商" /></Col>
                     <Col span={3}>
                         <FormControl>
-                            <Textarea name="remark" value={value.remark} />
+                             <AutoComplete name="gongyingshang" rules={{required: true, message: "必选项"}}
+                                getItems={(keyword, callback) => gongyingshangApi.getAutoCompleteItems(keyword, callback) }/>
+                        </FormControl>
+                    </Col>
+                </Row>
+                <Row noGutters={true}>
+                    <Col auto={true}><FormLabel title="单价" required={true} /></Col>
+                    <Col span={3}>
+                        <FormControl>
+                            <NumberTextBox name="danjia" type="float" rules={{required: true, message: "请输入单价"}}>
+                            </NumberTextBox>
+                        </FormControl>
+                    </Col>
+                </Row>
+                <Row noGutters={true}>
+                    <Col auto={true}><FormLabel title="备注" /></Col>
+                    <Col span={3}>
+                        <FormControl>
+                            <Textarea name="remark" />
                         </FormControl>
                     </Col>
                 </Row>
@@ -61,16 +78,7 @@ export default class DetailsForm extends Component {
         return this._form.validate();
     }
 
-    getPeijianItems = (keyword, callback) =>{
-        request.post('api/peijian/getList')
-            .send({keyword: keyword})
-            .then(response =>{
-                var result = response.body;
-                var peijianItems = result.peijianList.map(p => {return { value: p.id, text: p.name}} );
-                callback(peijianItems);
-            })
-            .catch(result =>{
-                alert(result.message);
-            })
+    reset(){
+        return this._form.reset();
     }
 }

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Zhangwei.Core\Zhangwei.Core.csproj" />
+    <ProjectReference Include="..\Zhangwei.Data\Zhangwei.Data.csproj" />
+    <ProjectReference Include="..\Zhangwei\Zhangwei.csproj" />
+  </ItemGroup>
+
+</Project>

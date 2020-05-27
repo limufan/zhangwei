@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import {Form, Row, Col, FormLabel, FormTitle, FormControl} from "../../components";
 import request from "superagent"
+import peiApi from "../peijian/Api"
 const {NumberTextBox, DatePicker, AutoComplete, DateRange, CheckBox, CheckBoxGroup, Select, Textarea, RadioGroup, AutoCompleteSelect} = Form;
 
 export default class DetailsForm extends Component {
@@ -28,7 +29,7 @@ export default class DetailsForm extends Component {
                     <Col span={3}>
                         <FormControl>
                              <AutoCompleteSelect name="peijianId" rules={{required: true, message: "必选项"}}
-                                getItems={(keyword, callback) => this.getPeijianItems(keyword, callback) }/>
+                                getItems={(keyword, callback) => peiApi.getPeijianItems(keyword, callback) }/>
                         </FormControl>
                     </Col>
                 </Row>
@@ -67,20 +68,7 @@ export default class DetailsForm extends Component {
     validate(){
         return this._form.validate();
     }
-
-    getPeijianItems = (keyword, callback) =>{
-        request.post('api/peijian/getList')
-            .send({keyword: keyword})
-            .then(response =>{
-                var result = response.body;
-                var peijianItems = result.peijianList.map(p => {return { value: p.id, text: p.name}} );
-                callback(peijianItems);
-            })
-            .catch(result =>{
-                alert(result.message);
-            })
-    }
-
+    
     getCheliangItems = (keyword, callback) =>{
         request.post('api/cheliang/getList')
             .send({keyword: keyword})

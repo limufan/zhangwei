@@ -23,5 +23,7 @@ namespace Zhangwei.Data
         public float Danjia { set; get; }
 
         public string Remark { set; get; }
+
+        public string Tag { set; get; }
     }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import {Table, Toolbar, Form, Row, Col, TextBox, Button, LinkButton, Pagination} from "../../components";
+import {Table, Toolbar, Form, Row, Col, TextBox, Button, LinkButton, Pagination, FormLabel} from "../../components";
 import request from "superagent"
 
 export default class Mingxi extends Component {
@@ -21,14 +21,31 @@ export default class Mingxi extends Component {
                 <Toolbar ref={tb => this._toolbar = tb}>
                     <Form ref={f => this._searchForm = f}>
                         <Row>
+                            <Col auto={true}><FormLabel title="配件" /></Col>
                             <Col auto={true}>
-                                <Form.TextBox name="keyword" />
+                                <Form.TextBox name="peijianName" />
                             </Col>
+                            <Col auto={true}><FormLabel title="图号" /></Col>
                             <Col auto={true}>
-                                <Form.DateRange name="createdTimeRange" />
+                                <Form.TextBox name="tuhao" />
+                            </Col>
+                            <Col auto={true}><FormLabel title="车辆" /></Col>
+                            <Col auto={true}>
+                                <Form.TextBox name="cheliangName" />
+                            </Col>
+                            <Col auto={true}><FormLabel title="时间" /></Col>
+                            <Col auto={true}>
+                                <Form.DateRange name="weixiuTimeRange" />
+                            </Col>
+                            <Col auto={true}><FormLabel title="备注" /></Col>
+                            <Col auto={true}>
+                                <Form.TextBox name="remark" />
                             </Col>
                             <Col auto={true} >
                                 <Button onClick={this.handleSearch}>查询</Button>
+                            </Col>
+                            <Col auto={true} >
+                                <Button onClick={this.handleReset}>清空</Button>
                             </Col>
                             <Col auto={true} >
                                 <LinkButton to="/weixiu/create">新增</LinkButton>
@@ -58,13 +75,13 @@ export default class Mingxi extends Component {
                         <Table.Cell ></Table.Cell>
                     </Table.Row>
                 </Table>
-                {/* <Pagination pageSize={10} onChange={this.handlePagerChange}/> */}
+                <Pagination pageSize={20} total={this.state.totalCount} onChange={this.handlePagerChange}/>
             </div>
         )
     }
 
     load(){
-        this.search({});
+        this.search({pageIndex: 1, pageSize: 20});
     }
 
     search(searchInfo){
@@ -72,6 +89,7 @@ export default class Mingxi extends Component {
             .send(searchInfo)
             .then(response =>{
                 var result = response.body;
+                this._searchInfo = searchInfo;
                 this.setState(result);
             })
             .catch(result =>{
@@ -81,6 +99,17 @@ export default class Mingxi extends Component {
 
     handleSearch = () => {
         var value = this._searchForm.getValue();
-        this.search(value);
+        this._searchInfo.pageIndex = 1;
+        Object.assign(this._searchInfo, value);
+        this.search(this._searchInfo);
+    }
+
+    handleReset = () => {
+        this._searchForm.reset();
+    }
+
+    handlePagerChange = (args) => {
+        Object.assign(this._searchInfo, args);
+        this.search(this._searchInfo);
     }
 }

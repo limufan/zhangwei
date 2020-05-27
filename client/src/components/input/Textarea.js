@@ -63,6 +63,11 @@ export default class Textarea extends React.Component{
         if(disabled){
             classNames.push("disabled");
         }
+        
+        let text = this.state.value;
+        if(text === undefined || text === null){
+            text = "";
+        }
 
         return (
             <textarea type="textarea"
@@ -75,7 +80,7 @@ export default class Textarea extends React.Component{
                 onBlur={this.handleBlur}
                 onChange={this.handleChange}
                 onInput={this.handleInput}
-                value={this.state.value}
+                value={text}
             />
         );
     }

@@ -24,6 +24,7 @@ namespace Zhangwei.WebApp.Controllers
                 using (var context = ZhangweiContextFactory.Create())
                 {
                     PeijianDataModel dataModel = ObjectMapperHelper.Map<PeijianDataModel>(webModel);
+                    dataModel.Tag = WebHelper.PeijianManager.GetTag(dataModel);
 
                     context.Peijian.Add(dataModel);
                     context.SaveChanges();
@@ -47,6 +48,7 @@ namespace Zhangwei.WebApp.Controllers
                 {
                     var dataModel = context.Peijian.Where(p => p.Id == webModel.Id).First();
                     ObjectMapperHelper.Map(dataModel, webModel);
+                    dataModel.Tag = WebHelper.PeijianManager.GetTag(dataModel);
 
                     context.Peijian.Update(dataModel);
                     context.SaveChanges();
@@ -73,6 +75,22 @@ namespace Zhangwei.WebApp.Controllers
                 }
 
                 return Json(new { success = true, peijian = dataModel });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+        [Route("tag")]
+        [HttpGet]
+        public JsonResult Tag()
+        {
+            try
+            {
+                WebHelper.PeijianManager.UpdateTag();
+
+                return Json(new { success = true });
             }
             catch (Exception ex)
             {
@@ -128,7 +146,7 @@ namespace Zhangwei.WebApp.Controllers
                     }
                     else
                     {
-                        peijianList = context.Peijian.Where(p => p.Name.IndexOf(searchModel.Keyword) > -1).Take(30).ToList();
+                        peijianList = context.Peijian.Where(p => p.Name.IndexOf(searchModel.Keyword) > -1 || p.Tag.IndexOf(searchModel.Keyword) > -1).Take(30).ToList();
                     }
                     return Json(new { success = true, peijianList = peijianList });
                 }

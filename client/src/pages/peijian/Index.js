@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import {Form, TextBox, Table, Toolbar, Row, Col, FormInput, Button, LinkButton} from "../../components";
+import {Form, TextBox, Table, Toolbar, Row, Col, LinkButton, Button, Pagination} from "../../components";
 import request from "superagent"
 
 export default class Index extends Component {
@@ -27,35 +27,39 @@ export default class Index extends Component {
                             <Col auto={true} >
                                 <Button onClick={this.handleSearch}>查询</Button>
                             </Col>
-                            {/* <Col auto={true} >
-                                <LinkButton to="/weixiu/create">新增</LinkButton>
-                            </Col> */}
+                            <Col auto={true} >
+                                <LinkButton to="/peijian/add">新增</LinkButton>
+                            </Col>
                         </Row>
                     </Form>
                 </Toolbar>
                 <Table columns={[
-                        {field: "name", title: "配件名称"},
+                        {field: "name", title: "配件名称", render: (args) => { return  <Link to={`/peijian/edit/${args.rowValue.id}`}>{args.value}</Link> }},
                         {field: "tuhao", title: "图号"},
                         {field: "danwei", title: "单位"},
                         {field: "danjia", title: "单价"},
                         {field: "kucun", title: "库存"},
                         {field: "remark", title: "备注"},
-                    ]} value={this.state.peijianList}>
+                    ]} 
+                    rowKeyField="id"
+                    value={this.state.peijianList}>
                 </Table>
+                <Pagination pageSize={20} total={this.state.totalCount} onChange={this.handlePagerChange}/>
             </div>
         )
     }
 
     load(){
-        this.search({});
+        this.search({pageIndex: 1, pageSize: 20});
     }
 
     search(searchInfo){
         request.post('api/peijian/getList')
             .send(searchInfo)
             .then(response =>{
+                this._searchInfo = searchInfo;
                 var result = response.body;
-                this.setState({peijianList: result.peijianList});
+                this.setState(result);
             })
             .catch(result =>{
                 alert(result.message);
@@ -64,6 +68,13 @@ export default class Index extends Component {
 
     handleSearch = () => {
         var value = this._searchForm.getValue();
-        this.search(value);
+        this._searchInfo.pageIndex = 1;
+        Object.assign(this._searchInfo, value);
+        this.search(this._searchInfo);
+    }
+
+    handlePagerChange = (args) => {
+        Object.assign(this._searchInfo, args);
+        this.search(this._searchInfo);
     }
 }

@@ -22,6 +22,8 @@ namespace Zhangwei.Data
 
         public string Danwei { set; get; }
 
+        public DateTime WeixiuTime { set; get; }
+
         public DateTime CreatedTime { set; get; }
 
         public int Shuliang { set; get; }

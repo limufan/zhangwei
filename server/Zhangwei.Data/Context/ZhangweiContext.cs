@@ -21,5 +21,7 @@ namespace Zhangwei.Models.Context
         public DbSet<PeijianKucunDataModel> PeijianKucun { get; set; }
 
         public DbSet<WeixiuDataModel> Weixiu { get; set; }
+
+        public DbSet<GongyingshangDataModel> Gongyingshang { get; set; }
     }
 }
