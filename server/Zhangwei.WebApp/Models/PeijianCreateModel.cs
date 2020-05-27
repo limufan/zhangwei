@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 
 namespace Zhangwei.WebApp.Models
 {
-    public class PeijianKucunCreateModel
+    public class PeijianCreateModel
     {
-        public int PeijianId { set; get; }
 
-        public DateTime RukuTime { set; get; }
+        public string Name { set; get; }
 
-        public string Gongyingshang { set; get; }
+        public string Tuhao { set; get; }
 
-        public int Shuliang { set; get; }
+        public string Danwei { set; get; }
+
+        public int Kucun { set; get; }
 
         public float Danjia { set; get; }
 

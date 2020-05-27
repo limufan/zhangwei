@@ -11,7 +11,7 @@ namespace Zhangwei.WebApp.Models
 
         public int PeijianId { set; get; }
 
-        public DateTime CreatedTime { set; get; }
+        public DateTime WeixiuTime { set; get; }
 
         public int Shuliang { set; get; }
 

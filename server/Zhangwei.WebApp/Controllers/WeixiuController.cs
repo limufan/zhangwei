@@ -23,24 +23,44 @@ namespace Zhangwei.WebApp.Controllers
                 using (var context = ZhangweiContextFactory.Create())
                 {
                     var query = context.Weixiu.AsQueryable();
-                    if (!string.IsNullOrEmpty(searchModel.Keyword))
+                    if (!string.IsNullOrEmpty(searchModel.PeijianName))
                     {
-                        query = query.Where(p => p.PeijianName.IndexOf(searchModel.Keyword) > -1 || p.CheliangName.IndexOf(searchModel.Keyword) > -1);
+                        query = query.Where(p => p.PeijianName.IndexOf(searchModel.PeijianName) > -1 );
                     }
-                    if(searchModel.CreatedTimeRange != null && !searchModel.CreatedTimeRange.IsEmpty)
+                    if (!string.IsNullOrEmpty(searchModel.CheliangName))
                     {
-                        if(searchModel.CreatedTimeRange.StartTime.HasValue)
+                        query = query.Where(p => p.CheliangName.IndexOf(searchModel.CheliangName) > -1);
+                    }
+                    if (!string.IsNullOrEmpty(searchModel.Tuhao))
+                    {
+                        query = query.Where(p => p.Tuhao.IndexOf(searchModel.Tuhao) > -1);
+                    }
+                    if (!string.IsNullOrEmpty(searchModel.Remark))
+                    {
+                        query = query.Where(p => p.Remark.IndexOf(searchModel.Remark) > -1);
+                    }
+                    if (searchModel.WeixiuTimeRange != null && !searchModel.WeixiuTimeRange.IsEmpty)
+                    {
+                        if(searchModel.WeixiuTimeRange.StartTime.HasValue)
                         {
-                            query = query.Where(p => p.CreatedTime >= searchModel.CreatedTimeRange.StartTime);
+                            query = query.Where(p => p.CreatedTime >= searchModel.WeixiuTimeRange.StartTime);
                         }
-                        if (searchModel.CreatedTimeRange.EndTime.HasValue)
+                        if (searchModel.WeixiuTimeRange.EndTime.HasValue)
                         {
-                            query = query.Where(p => p.CreatedTime <= searchModel.CreatedTimeRange.EndTime);
+                            query = query.Where(p => p.CreatedTime <= searchModel.WeixiuTimeRange.EndTime);
                         }
                     }
 
-                    var weixiuList = query.ToList();
-                    return Json(new { success = true, weixiuList = weixiuList, shuliangHeji = weixiuList.Sum(k => k.Shuliang), kucunHeji = weixiuList.Sum(k => k.Kucun), jineHeji = weixiuList.Sum(k => k.Heji) });
+                    var weixiuList = query.OrderByDescending(w => w.Id).ToList();
+
+                    return Json(new {
+                        success = true,
+                        weixiuList = weixiuList.Skip(searchModel.Start).Take(searchModel.PageSize),
+                        totalCount = weixiuList.Count,
+                        shuliangHeji = weixiuList.Sum(k => k.Shuliang),
+                        kucunHeji = weixiuList.Sum(k => k.Kucun),
+                        jineHeji = weixiuList.Sum(k => k.Heji)
+                    }) ;
                 }
             }
             catch(Exception ex)
@@ -59,6 +79,7 @@ namespace Zhangwei.WebApp.Controllers
                 {
                     var pejianDataModel = context.Peijian.Where(p => p.Id == webModel.PeijianId).FirstOrDefault();
                     WeixiuDataModel dataModel = ObjectMapperHelper.Map<WeixiuDataModel>(webModel);
+                    dataModel.CreatedTime = DateTime.Now;
                     dataModel.PeijianId = pejianDataModel.Id;
                     dataModel.PeijianName = pejianDataModel.Name;
                     dataModel.Tuhao = pejianDataModel.Tuhao;
